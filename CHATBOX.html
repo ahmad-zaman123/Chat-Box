@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAT-BOX</title>
+
+    <style>
+        #mainbox {
+
+            height: 630px;
+            width: 1345px;
+            /* border: 1px solid black; */
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            justify-content: space-around;
+            align-items: center;
+            position: relative;
+        }
+
+        .box1 {
+
+            height: 600px;
+            width: 450px;
+            border: 1px solid black;
+            border-radius: 20px;
+            background-image: url('bg1.jpeg');
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .box2 {
+
+            height: 600px;
+            width: 450px;
+            border: 1px solid grey;
+            border-radius: 20px;
+            background-image: url('bg2.jpg');
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #name {
+            height: 40px;
+            width: 450px;
+            /* border: 1px solid black; */
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            background-color: black;
+            text-align: left;
+            position: relative;
+        }
+
+        #dp1 {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            background-image: url('dp1.jpeg');
+            background-size: contain;
+            position: absolute;
+            top: 5px;
+            left: 20px;
+        }
+
+        #dp2 {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            background-image: url('dp2.jpeg');
+            background-size: contain;
+            position: absolute;
+            top: 5px;
+            left: 20px;
+        }
+
+        #username {
+            position: absolute;
+            left: 60px;
+            bottom: -7px;
+        }
+
+        #sendmsg {
+            height: 33px;
+            width: 430px;
+            /* border: 1px solid green; */
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #textbox1 {
+            width: 380px;
+            height: 25px;
+            border-radius: 14px;
+            border: none;
+        }
+
+        #textbox2 {
+            width: 380px;
+            height: 25px;
+            border-radius: 14px;
+            border: none;
+        }
+
+        #send1 {
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            /* background-color: green; */
+            background-image: url('send.jpeg');
+            background-size: contain;
+            color: white;
+            border: none;
+        }
+
+        #send2 {
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            /* background-color: green; */
+            background-image: url('send.jpeg');
+            background-size: contain;
+            color: white;
+            border: none;
+        }
+
+        #midbox1 {
+            height: 510px;
+            width: 430px;
+            /* border: 1px solid blue; */
+        }
+
+        #midbox2 {
+            height: 510px;
+            width: 430px;
+            /* border: 1px solid blue; */
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="mainbox">
+
+        <div class="box1">
+
+            <div id="name">
+
+                <div id="dp1"> </div>
+
+                <p id="username" style="color:whitesmoke">AHMAD</p>
+
+            </div>
+
+
+            <div id="midbox1" style="display: flex;flex-direction: column;padding: 10px;">
+
+            </div>
+
+            <div id="sendmsg">
+                <input type="text" placeholder="  Message" id="textbox1">&nbsp;
+                <button id="send1" onclick="sendMessage1()"></button>
+            </div>
+
+        </div>
+        <div class="box2">
+
+            <div id="name" style="background-color: turquoise">
+
+                <div id="dp2"> </div>
+
+                <p id="username" style="color: whitesmoke;">ARHAM</p>
+
+            </div>
+
+
+            <div id="midbox2" style="display: flex;flex-direction: column;padding: 10px;">
+
+            </div>
+
+            <div id="sendmsg">
+                <input type="text" placeholder="  Message" id="textbox2">&nbsp;
+                <button id="send2" onclick="sendMessage2()"></button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        
+
+        document.getElementById('textbox1').addEventListener('keydown', function (event) {
+
+            if (event.key === 'Enter')
+                sendMessage1()
+        })
+
+
+        document.getElementById('textbox2').addEventListener('keydown', function (event) {
+
+            if (event.key === 'Enter')
+                sendMessage2()
+        })
+
+        const chatbox1 = document.getElementById('midbox1')
+        const chatbox2 = document.getElementById('midbox2')
+
+
+
+        function sendMessage1() {
+            const msg1 = document.getElementById('textbox1').value
+
+            if (msg1=='')
+                return
+            
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes();
+            const zone = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            const formattedMinutes = minutes.toString().padStart(2, '0');
+            const formattedTime = `${hours}:${formattedMinutes} ${zone}`;
+
+
+            const time1 = document.createElement('div');
+                time1.style.fontSize = '10px';
+                time1.style.color = 'gray';
+                time1.style.marginLeft = '10px'
+                time1.style.display = 'flex'
+                time1.style.flexDirection = 'row'
+                time1.style.alignItems = 'flex-end'
+                time1.innerHTML = formattedTime;
+
+       
+            const time2 = document.createElement('div');
+                time2.style.fontSize = '10px';
+                time2.style.color = 'gray';
+                time2.style.marginLeft = '10px'
+                time2.style.display = 'flex'
+                time2.style.flexDirection = 'row'
+                time2.style.alignItems = 'flex-end'
+                time2.innerHTML = formattedTime;
+                
+            
+            const message1 = document.createElement('div')
+            message1.textContent = msg1
+
+            const message2 = document.createElement('div')
+            message2.textContent = msg1
+
+            const profile1 = document.createElement('img')
+            profile1.src = 'dp1.jpeg'
+
+            const profile2 = document.createElement('img')
+            profile2.src = 'dp1.jpeg'
+
+            const msgtime1 = document.createElement('div')
+            msgtime1.appendChild(message1)
+            msgtime1.appendChild(time1)
+
+            const bubble1 = document.createElement('div')
+            bubble1.appendChild(profile1)
+            bubble1.appendChild(msgtime1)
+            
+            const msgtime2 = document.createElement('div')
+            msgtime2.appendChild(message2)
+            msgtime2.appendChild(time2)
+
+            const bubble2 = document.createElement('div')
+            bubble2.appendChild(profile2)
+            bubble2.appendChild(msgtime2)
+            
+            chatbox1.appendChild(bubble1)
+            chatbox2.appendChild(bubble2)
+
+            profile1.setAttribute(
+                'style',
+                'height : 27px ; width : 27px ; border-radius : 50%;display:flex; justify-content:center;align-items:center; margin-right : 8px;margin-top : 12px;'
+            )
+
+            profile2.setAttribute(
+                'style',
+                'height : 27px ; width : 27px ; border-radius : 50%;display:flex; justify-content:center;align-items:center; margin-right : 8px;margin-top : 12px;'
+            )
+
+            msgtime1.setAttribute(
+                'style',
+                'background-color : #25d366 ;display:flex; padding : 7px; border-radius : 10px; margin-right : 5px;margin-top : 10px; align-self: flex-end; max-width: 80%;'
+            )
+
+            msgtime2.setAttribute(
+                'style',
+                'background-color : white;display:flex; padding : 7px; border-radius : 10px; margin-right : 5px;margin-top : 10px; align-self: flex-end; max-width: 80%;'
+            )
+           
+            bubble1.setAttribute(
+                'style',
+                'display:flex;flex-direction:row-reverse;'
+            )
+
+            bubble2.setAttribute(
+                'style',
+                'display:flex; flex-direction:row;align-items:center;'
+            )
+
+
+            document.getElementById('textbox1').value = ""
+
+        }
+
+        function sendMessage2() {
+            const msg2 = document.getElementById('textbox2').value
+
+            if (msg2=='')
+                return
+
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes();
+            const zone = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            const formattedMinutes = minutes.toString().padStart(2, '0');
+            const formattedTime = `${hours}:${formattedMinutes} ${zone}`;
+
+
+            const time1 = document.createElement('div');
+                time1.style.fontSize = '10px';
+                time1.style.color = 'gray';
+                time1.style.marginLeft = '10px'
+                time1.style.display = 'flex'
+                time1.style.flexDirection = 'row'
+                time1.style.alignItems = 'flex-end'
+                time1.innerHTML = formattedTime;
+
+       
+            const time2 = document.createElement('div');
+                time2.style.fontSize = '10px';
+                time2.style.color = 'gray';
+                time2.style.marginLeft = '10px'
+                time2.style.display = 'flex'
+                time2.style.flexDirection = 'row'
+                time2.style.alignItems = 'flex-end'
+                time2.innerHTML = formattedTime;
+
+            const message1 = document.createElement('div')
+            message1.textContent = msg2
+
+            const message2 = document.createElement('div')
+            message2.textContent = msg2
+
+            const profile1 = document.createElement('img')
+            profile1.src = 'dp2.jpeg'
+
+            const profile2 = document.createElement('img')
+            profile2.src = 'dp2.jpeg'
+
+            const msgtime1 = document.createElement('div')
+            msgtime1.appendChild(message1)
+            msgtime1.appendChild(time1)
+
+            const bubble1 = document.createElement('div')
+            bubble1.appendChild(profile1)
+            bubble1.appendChild(msgtime1)
+            
+            const msgtime2 = document.createElement('div')
+            msgtime2.appendChild(message2)
+            msgtime2.appendChild(time2)
+
+            const bubble2 = document.createElement('div')
+            bubble2.appendChild(profile2)
+            bubble2.appendChild(msgtime2)
+            
+
+            chatbox1.appendChild(bubble1)
+            chatbox2.appendChild(bubble2)
+
+            
+            profile1.setAttribute(
+                'style',
+                'height : 27px ; width : 27px ; border-radius : 50%;display:flex; justify-content:center;align-items:center; margin-right : 8px;margin-top : 12px;'
+            )
+
+            profile2.setAttribute(
+                'style',
+                'height : 27px ; width : 27px ; border-radius : 50%;display:flex; justify-content:center;align-items:center; margin-right : 8px;margin-top : 12px;'
+            )
+
+            msgtime1.setAttribute(
+                'style',
+                'background-color : white ;display:flex; padding : 7px; border-radius : 10px; margin-right : 5px;margin-top : 10px; align-self: flex-end; max-width: 80%;'
+            )
+
+            msgtime2.setAttribute(
+                'style',
+                'background-color : #25d366;display:flex; padding : 7px; border-radius : 10px; margin-right : 5px;margin-top : 10px; align-self: flex-end; max-width: 80%;'
+            )
+
+            bubble1.setAttribute(
+                'style',
+                'display:flex; flex-direction:row;'
+            )
+
+            bubble2.setAttribute(
+                'style',
+                'display:flex; flex-direction:row-reverse;'
+            )
+
+
+            document.getElementById('textbox2').value = ""
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
